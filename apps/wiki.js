@@ -44,7 +44,7 @@ export class wiki extends plugin {
   set getImg(name) {if(this.group==0){this._render_nga_wiki(name)}else{defwiki.getImg(name,this.group)}}
 
   async wiki_help() {
-    await this.e.reply('攻略帮助:\n#心海攻略[1234]\n#更新早柚攻略[1234]\n#设置默认攻略[1234]\n示例: 心海攻略4\n\n攻略来源:\n0——NGA原神版\n1——西风驿站\n2——原神观测枢\n3——派蒙喵喵屋\n4——OH是姜姜呀')
+    await this.e.reply('攻略帮助:\n#心海攻略[01234]\n#更新早柚攻略[01234]\n#设置默认攻略[01234]\n示例: 心海攻略4\n\n攻略来源:\n0——NGA原神版\n1——西风驿站\n2——原神观测枢\n3——派蒙喵喵屋\n4——OH是姜姜呀')
   }
 
   /** #设置默认攻略1 */
@@ -150,6 +150,7 @@ export class wiki extends plugin {
           htmlDir, 
           Markdown, 
           element: this._element, 
+          roleName: this.roleName,
           path:this.sfPath, 
           pluResPath: `${_path}/plugins/ngawiki-plugin/resources/`,  
           fullPage: true }

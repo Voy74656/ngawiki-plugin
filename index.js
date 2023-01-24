@@ -7,6 +7,9 @@ import fs from "fs";
 logger.info('---------QAQ---------')
 logger.info(`正在加载 NGA Wiki图鉴 插件 @Voyager 整理`)
 
+if (!fs.existsSync(`${_path}/config/`)) {
+  fs.mkdirSync(`${_path}/config/`);
+}
 
 let apps = {}
 const files = fs.readdirSync(`./plugins/${pluginName}/apps`).filter((file) => file.endsWith('.js'))
