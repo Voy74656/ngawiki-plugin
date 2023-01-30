@@ -1,3 +1,4 @@
 config/**
 **/debug_*.js
-
+version
+changelog
