@@ -29,7 +29,7 @@ export class ngaupdater extends plugin {
         },
       ],
     });
-    this.mdPath = mdPath;
+    this.mdPath = `${mdPath}`;
     this.verFile = `${pluginRoot}version`;
     this.changeLogFile = `${pluginRoot}changelog`;
     if (!fs.existsSync(this.mdPath)) {

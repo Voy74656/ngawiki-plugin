@@ -76,7 +76,6 @@ export class wiki extends plugin {
     let _new_role = await this._regrolename(match[2])
     this.roleName = _new_role.name
     this._element = _new_role.element
-    logger.info(`this.roleName:${this.roleName}`)
     if (this.roleName == null || this.roleName === '') return
 
     let _allGroups = ['0', '1', '2', '3', '4']
@@ -103,21 +102,17 @@ export class wiki extends plugin {
 
   async _regrolename(str) {
     let _element =''
-    logger.info(str)
     let role = gsCfg.getRole(str)
     if (!role) return false
     /** 主角特殊处理 */
     if (['10000005', '10000007', '20000000'].includes(String(role.roleId))) {
       let travelers = ['风主', '岩主', '雷主', '草主']
-      logger.info(travelers.includes(role.alias))
       if (!travelers.includes(role.alias)) {
         let msg = '请选择：'
         for (let sub of travelers) {
           msg += `${sub}攻略、`
         }
-        logger.info(msg)
         msg = msg.substring(0, msg.lastIndexOf('、'))
-        logger.info(msg)
         await this.e.reply(msg)
         return ''
       } else {
@@ -133,9 +128,6 @@ export class wiki extends plugin {
 
   async _render_nga_wiki(roleName) {
     let element = await gsCfg.getElementByRoleName(roleName)
-    logger.info(roleName)
-    
-    fs.existsSync()
     if (!fs.existsSync(`./plugins/${pluginName}/resources/markdown/${roleName}.md`)) {
       this.e.reply(`暂无${roleName}攻略（${this.group==0? 'NGA':defwiki.source[this.group-1]}）\n请尝试其他的攻略来源查询\n#攻略帮助，查看说明`)
       return false

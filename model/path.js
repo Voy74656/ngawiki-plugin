@@ -11,7 +11,7 @@ const pluginResources = path.join(pluginRoot, 'resources')
 
 const yunzaiWikiPath =  path.join(_path, '/data/strategy')
 
-
+const mdPath = path.join(pluginResources,'markdown/')
 
 const htmlDir = path.join(pluginResources, 'html')
 const tplFile = path.join(htmlDir, 'ngaWiki.html')
@@ -22,6 +22,7 @@ export {
   pluginRoot,
   pluginResources,
   yunzaiWikiPath,
+  mdPath,
   htmlDir,
   tplFile
 }
