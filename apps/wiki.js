@@ -24,7 +24,7 @@ export class wiki extends plugin {
           reg: '^#?设置默认攻略([0-4])?$',
           fnc: 'wiki_setting'
         },{
-          reg: '^#?(更新)?\\S+攻略([0-4])?$',
+          reg: '^#?(更新)?([\u4e00-\u9fa5]+?)(攻略|配队)\s{0,}[01234]?$',
           fnc: 'wiki_get'
         },
         {
@@ -71,15 +71,20 @@ export class wiki extends plugin {
   }
 
   async wiki_get() {
-    let match = /^#?(更新)?(\S+)攻略([0-4])?$/.exec(this.e.msg)
+    let match = /^#?(更新)?([\u4e00-\u9fa5]+?)(攻略|配队)\s{0,}[01234]?$/.exec(this.e.msg)
     let isUpdate = !!match[1]
     let _new_role = await this._regrolename(match[2])
+    let _iswiki=match[3]=='攻略'? 1:0
     this.roleName = _new_role.name
     this._element = _new_role.element
     if (this.roleName == null || this.roleName === '') return
 
-    let _allGroups = ['0', '1', '2', '3', '4']
-    this.group = _allGroups.includes(match[3]) ? match[3] : this.appconfig.defaultSource
+    if(_iswiki){
+      let _allGroups = ['0', '1', '2', '3', '4']
+      this.group = _allGroups.includes(match[3]) ? match[3] : this.appconfig.defaultSource
+    }else{
+      this.group = 1
+    }
 
     this.sfPath = `${yunzaiWikiPath}/${this.group}/${this.roleName}.jpg`
 
